@@ -9,10 +9,13 @@ import { registerUser } from "../../lib/actions/auth.action";
 import { AppDispatch } from "../../store/store";
 import { addUser } from "../../store/userSlice";
 import { registerSchema } from "../../lib/validation";
+import { useState } from "react";
 
 type RegisterFormInputs = z.infer<typeof registerSchema>;
 
 const Register = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  
   const {
     register,
     handleSubmit,
@@ -25,6 +28,7 @@ const Register = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const onSubmit = async (data: RegisterFormInputs) => {
+    setLoading(true);
     try {
       const user = await registerUser(data);
       localStorage.setItem("swap_token", user.token);
@@ -39,6 +43,8 @@ const Register = () => {
         console.error("Unexpected error:", error);
         toast.error("An unexpected error occurred");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -109,9 +115,10 @@ const Register = () => {
 
           <button
             type="submit"
+            disabled={loading}
             className="w-full bg-orange-1 text-white-1 p-2 mt-4 rounded hover:bg-orange-2"
           >
-            Register
+            {loading ? "Loading..." : "Register"}
           </button>
         </form>
         <span className="text-white-1">

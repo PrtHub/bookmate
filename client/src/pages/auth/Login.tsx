@@ -9,10 +9,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginUser } from '../../lib/actions/auth.action';
 import { loginSchema } from '../../lib/validation';
+import { useState } from 'react';
 
 type LoginFormInputs = z.infer<typeof loginSchema>;
 
 const Login = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+
   const {
     register,
     handleSubmit,
@@ -25,6 +28,7 @@ const Login = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const onSubmit = async (data: LoginFormInputs) => {
+    setLoading(true);
     try {
       const user = await loginUser(data)
       localStorage.setItem('swap_token', user.token)
@@ -39,6 +43,8 @@ const Login = () => {
         console.error("Unexpected error:", error);
         toast.error("An unexpected error occurred");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -75,9 +81,10 @@ const Login = () => {
 
           <button
             type="submit"
+            disabled={loading}
             className="w-full bg-orange-1 text-white-1 p-2 mt-4 rounded hover:bg-orange-2"
           >
-            Login
+            {loading ? 'Loading...' : 'Login'}
           </button>
         </form>
         <span className='text-white-1'>
