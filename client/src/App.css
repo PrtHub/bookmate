@@ -9,3 +9,21 @@ html {
   background-color: #101114;
   font-family: "Manrope", sans-serif;
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  height: 3px
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 50px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -14,8 +14,8 @@ const genres = [
 const RightSidebar = () => {
   const currentUser = useSelector((state: RootState) => state.user.currentUser);
   return (
-    <section className="lg:w-48 h-full bg-black-1 fixed top-5 right-0 pl-5 lg:pr-10 overflow-y-scroll hidden lg:flex flex-col items-start z-50">
-      <div className="lg:block hidden">
+    <section className="lg:w-48 h-full bg-black-1 fixed top-0 right-0 pl-5 lg:pr-10 overflow-y-scroll custom-scrollbar hidden lg:flex flex-col items-start z-50">
+      <div className="lg:block hidden pt-7">
         {currentUser ? (
           <section className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-full bg-orange-1 flex items-center justify-center">

@@ -22,7 +22,7 @@ const Sidebar = () => {
   };
 
   return (
-    <section className="lg:w-64 w-fit h-full bg-black-1 fixed top-0 left-0 pt-36 pl-5 lg:pl-10 overflow-y-scroll hidden sm:flex flex-col justify-between items-start">
+    <section className="lg:w-64 w-fit h-full bg-black-1 fixed top-0 left-0 pt-36 pl-5 lg:pl-10 overflow-y-scroll custom-scrollbar hidden sm:flex flex-col justify-between items-start">
       <div className="w-full flex flex-col gap-6">
         {sidebarlinks.map(({ label, route, icon: Icon }) => {
           const isActive =
