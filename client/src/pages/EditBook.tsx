@@ -17,6 +17,7 @@ const EditBook = () => {
   const navigate = useNavigate();
   const [book, setBook] = useState<Book | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     register,
@@ -45,6 +46,7 @@ const EditBook = () => {
   }, [id, setValue]);
 
   const onSubmit = async (data: EditBookFormInputs) => {
+    setLoading(true);
     try {
       const formData = new FormData();
       formData.append("title", data.title);
@@ -67,6 +69,8 @@ const EditBook = () => {
         console.error("Unexpected error:", error);
         toast.error("An unexpected error occurred");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -201,7 +205,7 @@ const EditBook = () => {
           type="submit"
           className="w-full bg-orange-1 text-white-1 p-2 mt-4 rounded hover:bg-orange-1/90 font-semibold"
         >
-          Update Book
+         {loading ? "Updating Book..." : "Update Book"}
         </button>
       </form>
     </section>

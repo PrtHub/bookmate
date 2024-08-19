@@ -13,6 +13,7 @@ type AddBookFormInputs = z.infer<typeof addBookSchema>;
 
 const AddBook = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     register,
@@ -26,6 +27,7 @@ const AddBook = () => {
   const navigate = useNavigate()
 
   const onSubmit = async (data: AddBookFormInputs) => {
+    setLoading(true);
     try {
       const formData = new FormData();
       formData.append("title", data.title);
@@ -48,6 +50,8 @@ const AddBook = () => {
         console.error("Unexpected error:", error);
         toast.error("An unexpected error occurred");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -180,9 +184,10 @@ const AddBook = () => {
 
         <button
           type="submit"
+          disabled={loading}
           className="w-full bg-orange-1 text-white-1 p-2 mt-4 rounded hover:bg-orange-1/90 font-semibold"
         >
-          Add Book
+          {loading ? "Adding Book..." : "Add Book"}
         </button>
       </form>
     </section>
