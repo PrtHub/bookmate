@@ -1,6 +1,7 @@
 import {
   ArrowLeftRight,
   Book,
+  BookOpen,
   BookPlus,
   Compass,
 } from "lucide-react";
@@ -21,6 +22,11 @@ export const sidebarlinks = [
     label: "Add Book",
     route: "/add-book",
     icon: BookPlus,
+  },
+  {
+    label: "Match Making",
+    route: "/match-making",
+    icon: BookOpen,
   },
   {
     label: "Exchange Requests",

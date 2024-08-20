@@ -6,7 +6,8 @@ import {
   updateBook,
   deleteBook,
   addBook,
-  getUserBooks
+  getUserBooks,
+  getMatches
 } from '../controllers/book.controller';
 import upload from '../config/multer';
 
@@ -18,5 +19,6 @@ router.get('/user-books', auth, getUserBooks);
 router.get('/get/:id', getBookById);
 router.put('/update/:id', auth, upload.single('picture'), updateBook);
 router.delete('/delete/:id', auth, deleteBook);
+router.get('/matches', auth, getMatches);
 
 export default router; 

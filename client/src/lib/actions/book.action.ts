@@ -64,3 +64,13 @@ export const deleteBook = async (id: string) => {
     throw error;
   }
 }
+
+export const getMatches = async () => {
+  try {
+    const res = await api.get("/book/matches");
+    return res.data
+  } catch (error) {
+    console.error("Error fetching matching book:", error);
+    throw error;
+  }
+}

@@ -10,6 +10,7 @@ import AddBook from "./pages/AddBook";
 import EditBook from "./pages/EditBook";
 import ExchangeRequests from "./pages/ExchangeRequests";
 import BookDetails from "./pages/BookDetails";
+import MatchMaking from "./pages/MatchMaking";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/exchange-requests",
         element: <ProtectedRoute element={<ExchangeRequests />} />,
+      },
+      {
+        path: "/match-making",
+        element: <ProtectedRoute element={<MatchMaking />} />,
       }
     ],
   },
